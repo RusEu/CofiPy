@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+{%block script%}
+	<script src="{%static 'js/angularQuote.js' %}"></script>
+{%endblock%}
+{%block main%}
+<div class="container" ng-controller="NgQuote">
+	<div class="row" id="first_row">
+		<div class="animate-repeat col-md-4 col-xs-12 pull-left clearfix" ng-repeat-start="item in quotes">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<a href="/userprofile/user=[[item.creator.id]]" class="pull-right" style="margin-top:10px;">View profile</a> 
+					<h4>@[[item.creator]]</h4>
+				</div>
+			<div class="panel-body" style="overflow:visible;">
+					<div class="clearfix"></div>
+					<br>
+					<div class="row">
+						<div class="row col-md-12 list-inline">
+							<div id="text" class="col-md-8" style="word-wrap: break-word;">
+								<p>[[item.text]]</p>
+							</div>
+							<div class="image col-md-4 pull-right">
+								<img src="/media/[[item.image]]" width="50" height="50" class="img-circle pull-right">
+							</div>
+						</div>
+						<div class="send_coffee" style="margin-top:20px;">
+							<a ng-if="CheckVotes($index,msg.current_user)" class="col-md-6 pull-left" href="#disabled">
+								<button class="btn btn-primary btn-xs disabled">Send Coffee</button>
+							</a>
+							<a ng-if="!CheckVotes($index,msg.current_user)" class="col-md-6 pull-left" href="/send_coffee/{{item.id}}">
+								<button class="btn btn-primary btn-xs">Send Coffee</button>
+							</a>
+							<div id="hover_users" class="pull-right">
+								<p>[[item.votes]] Coffees received</p>
+								<ul>
+									<li ng-repeat="vote in item.votes_received"><span>[[vote.user]]</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="border"></div>
+				</div>
+			</div>
+		</div>    
+		<div class="clearfix" ng-if="$index%3==2"></div>
+    	<div ng-repeat-end=""></div>
+	</div>
+</div>
+{%endblock%}

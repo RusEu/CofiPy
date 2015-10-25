@@ -1,0 +1,15 @@
+
+{%extends 'base.html'%}
+{% load i18n %}
+{%load staticfiles%}
+{%block main%}
+
+
+
+  <p class="required"><label for="id_username">Username:</label> <input id="id_username" maxlength="30" name="username" type="text"></p>
+<p class="required"><label for="id_email">E-mail:</label> <input type="email" name="email" id="id_email" class="form-control input-lg" placeholder="Email Address" tabindex="4"></p>
+<p class="required"><label for="id_password1">Password:</label> <input id="id_password1" name="password1" type="password"></p>
+<p class="required"><label for="id_password2">Password (again):</label> <input id="id_password2" name="password2" type="password"></p>
+
+  <input value="Submit" type="submit">
+{%endblock%}

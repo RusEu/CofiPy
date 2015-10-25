@@ -1,0 +1,8 @@
+{%extends 'base.html'%}
+{%block main%}
+	{% for item in message %}
+	<p>{{item.sender.user.username}} Sender </p>
+	<p>{{item.receiver.user.username}} Receiver </p>
+	<p>{{item.text}}</p>
+	{% endfor %}
+{%endblock%}

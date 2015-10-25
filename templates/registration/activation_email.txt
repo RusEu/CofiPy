@@ -1,0 +1,13 @@
+{% load i18n %}
+	{% trans "Activate account at" %} {{ site.name }}:
+
+	Thanks for signing up on dobuy.es! You must follow this link to activate your account:
+
+	http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+	{% blocktrans %}Link is valid for {{ expiration_days }} days.{% endblocktrans %}
+
+	Have fun, and don't hesitate to contact us with your feedback.
+
+	The DObuy Team
+	https://www.dobuy.es

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block main %}
+<div>
+	<h2 class=  "col-md-6 pull-left"> Shipping Address</h2>
+	<h2 class = "col-md-6 pull-right">Billing Address</h2>
+	<p class ="text-center col-md-6 pull-left">
+	{{shipping.first_name}}<br>
+	{{shipping.last_name}}<br>
+	{{shipping.address1}}<br>
+	{{shipping.address2}}<br>
+	{{shipping.city}}<br>
+	{{shipping.state}}<br>
+	{{shipping.zipcode}}<br>
+	{{shipping.country}}</p>
+	<p class ="text-center col-md-6 pull-right">
+	{{billing.first_name}}<br>
+	{{billing.last_name}}<br>
+	{{billing.address1}}<br>
+	{{billing.address2}}<br>
+	{{billing.city}}<br>
+	{{billing.state}}<br>
+	{{billing.zipcode}}<br>
+	{{billing.country}}</p>
+<div>
+{%endblock%}

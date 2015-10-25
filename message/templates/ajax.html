@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+{%block main%}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script>
+function LoadJson(){ //start function
+	$.getJSON( "/messages/message/friend=lalala", function( data ) {
+		var items = [];
+		var lastitem = parseInt($("#showdata div:last-child").attr("id"));
+		if (lastitem !== lastitem) {
+			var lastitem = 0;
+		}
+		$.each( data, function( key, val ) {
+			if ( key > lastitem ) {
+				//if ( val.user == "bidder"){
+				//	$("#showdata").append("<div class='well well-lg lighter' id='" + key + "'>"+"<span class='pull-left'><span class='sender'>"+val.user+"</span>" + "<span class='message' style='margin-left:30px;'>" + val.msg + "</span></span><small class='pull-right'>"+ val.time + "</small></div>");
+					$('#bottom').scrollTop($('#bottom').prop("scrollHeight"));
+				};
+			};
+		});
+	});
+};
+$(document).ready(function(){
+	$('#bottom').scrollTop($('#bottom').prop("scrollHeight"));
+	setTimeout(LoadJson(),2000);
+}); 
+</script>
+	<div class="container" style="margin-top:5em;">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="panel panel-success">
+					<div class="panel panel-heading text-center">
+						<h4>Friend List</h4>
+					</div>
+					<div class="panel panel-body" style="height:17em;overflow:auto;padding:10px;">
+						<table class="table">
+							{%for item in senders %}
+							<h4 class="text-center" style="border-bottom: 2px dotted #ECF0F1;margin-top:30px;">
+								<a href="/messages/friend={{item}}#tobottom">{{item}}</a>
+							</h4>
+							{%endfor%}
+							<p>{{length.message}}
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="panel panel-success" style="height:25em;position:relative;">
+					<div class="panel-heading text-center">
+						<h4>Chat with {{friend}}</h4>
+					</div>
+					<div id="bottom" class="panel-body" style="height:17em;overflow:auto;">
+						{%for item in messages %}
+						<p>{{messages.username}}
+							<div id="showdata">
+							<div class='well lighter row col-md-12' style="padding:20px;">
+							<span class='pull-left col-md-12 col-xs-12' style="overflow:auto;margin:auto;">
+								<span class='sender col-md-2'>
+								Bidder
+								</span>
+								<span class='message col-md-9 col-md-offset-1'>laaaaaaaaaa aaaaaaa aaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaa aaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaa aaaaa aaaaaaaaaaa aaaaa aaaaaaaaaaaaaaaaaaaaa</span>
+							</span></br>
+							<small class='text-right pull-right col-md-12 col-xs-12' style="margin-top:40px;">2014.05.05</small></div>
+							</div>
+						{%endfor%}
+						<form method="POST" enctype="multipart/form-data" action="#tobottom">
+						{%csrf_token%}
+							<input class="form-control" cols="30" id="send" name="send" maxlength="40" placeholder="Send Message" rows="3" style="position:absolute;bottom:0;left:0;"></input>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{%endblock%}

@@ -1,0 +1,161 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+nav * {
+	margin-left:10px;
+}
+#brand {
+	margin-left:20px;
+	margin-right:60px;
+	margin-bottom:10px;
+	margin-top:-10px;
+	font-family: Pacifico;
+	font-size:30px;
+}
+#search {
+	margin-top:10px;
+}
+#first_row {
+	margin-top: 40px;
+}
+#friends {
+	margin-top:30px;
+	margin-bottom:30px;
+}
+.formbtn {
+	margin-top: 30px;
+}
+.wellpost{
+	background-color: #18BC9C;
+}
+.wellpost h4 {
+	color:#FFF;
+}
+.friends_image {
+    height: 100px !important;
+    width: 100px;
+}
+.message {
+	margin:2px;
+	padding:10px;
+	background-color:#f8f8f8;
+	border:1px solid #e8e8e8;
+}
+.border {
+	border-bottom:2px solid #e8e8e8;
+}
+#hover_users ul li{
+	display : none;
+}
+#hover_users ul li span{
+	margin-right:10px;
+}
+#hover_users:hover ul li{
+	display: block;
+}
+.menu {
+	position:relative;
+}
+.friends_hover .friends_requests {
+	position:absolute;
+	top:60px;
+	background-color: #fff;
+	z-index: 10;
+	width: 250px;
+	margin: 0;
+	padding: 0;
+}
+.friends_hover:hover .friends_requests {
+	border: 2px solid #18BC9C;
+}
+.friends_hover .friends_requests li {
+	display:none;
+}
+.friends_hover:hover .friends_requests li {
+	display:block;
+}
+.friends_hover:hover .friends_requests #separate {
+	padding:15px;
+}
+.green {
+	border-top: 1px solid #e8e8e8;
+	margin: 0;
+	padding: 0;
+	background-color: #18BC9C;
+}
+.green h4 {
+	margin-top: -10px;
+}
+.animate-repeat {
+    -webkit-transition: 1s linear all;
+    transition: 1s linear all;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+    opacity:0;
+    max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+    max-height:40px;
+}
+
+/**
+ * Stagger Leave (hide) animation
+ */
+.animate-repeat.ng-leave-stagger {
+    /* this will have a 100ms delay between each successive leave animation */
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+
+    /* in case the stagger doesn't work then these two values
+     must be set to 0 to avoid an accidental CSS inheritance */
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+/**
+ * Stagger ENTER ANIMATION
+ */
+.animate-repeat.ng-enter-stagger {
+    /* this will have a 100ms delay between each successive enter animation */
+    -webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+
+    /* in case the stagger doesn't work then these two values
+     must be set to 0 to avoid an accidental CSS inheritance */
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+.dropdownToggleDissabled {
+	display : none;
+}
+
+.modal {
+    display: block;
+}
+.modal-body:before,
+.modal-body:after {
+    display: table;
+    content: " ";
+}
+.modal-header:before,
+.modal-header:after {
+    display: table;
+    content: " ";
+}
+
+.dropdownToggleActive {
+	display : block;
+}

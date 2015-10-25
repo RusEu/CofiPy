@@ -1,0 +1,67 @@
+{%extends 'base.html'%}
+{% load i18n %}
+{%load staticfiles%}
+{%block main%}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-signup">
+                    <div class="panel-body">
+                        <form role="form" action="." method="post">
+                        {% csrf_token %}
+                            <h2>Please Sign Up
+                                <small>Buy smart & easy</small>
+                            </h2>
+                            <hr class="colorgraph">
+                            {% if form.errors %}
+                            <div class="alert alert-error">
+                                <ul>
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {%endif%}
+                            {% for field in form.visible_fields %}
+						        <div class="control-group {{ field.html_name }} {% if field.errors %}error{% endif %}">
+						            <div class="controls">
+						                {{ field }}
+                                        <br>
+						                {% if field.errors %}<span class="help-inline">{{ field.errors.as_text }}</span>{% endif %}
+						            </div>
+						        </div>
+						    {% endfor %}
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-3 col-md-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" required name="terms">I agree with the <a href="terms.html">Terms & Conditions</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6 ">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">Subscribe to our newsletter
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-actions">
+                                        <input type="submit" value="{% trans 'Submit' %}" class="btn btn-primary btn-block btn-lg" tabindex="7">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="panel-footer text-center">
+                        Already have an account? <a href="/accounts/login">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

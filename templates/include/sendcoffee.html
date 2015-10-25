@@ -1,0 +1,18 @@
+						<div class="send_coffee
+								{% for creator in item.votes_received.all %}
+									{%if user.id == creator.id %}
+										exists
+									{%endif%}
+								{% endfor %} row col-md-6" style="margin-top:20px;">
+							<a class="col-md-12 text-right" href="/send_coffee/{{item.id}}">
+								<button class="addclass btn btn-primary btn-xs">Send Coffee</button>
+							</a>
+							<div id="hover_users" class="pull-right">
+								<p>{{item.votes}} Coffees received</p>
+								<ul>
+								{% for sender in item.votes_received.all %}
+									<li><span>{{ sender }}</span></li>
+								{% endfor %}
+								</ul>
+							</div>
+						</div>

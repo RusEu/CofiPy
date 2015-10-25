@@ -1,0 +1,104 @@
+{%extends 'base.html'%}
+{%load staticfiles%}
+{%block script%}
+<script src="{%static 'js/angularCofifi.js' %}"></script>
+{%endblock%}
+{%block main%}
+<div class="container">
+lldasldlasd
+	<div class="row" id="first_row">
+		<div class="col-md-4 col-xs-12 pull-left">
+			<div class="panel panel-success col-md-12">
+				<div class="panel-thumbnail">
+					<img src="/media/{{userprofile.image}}" width="28px" height="28px">
+				</div>
+				<div class="panel panel-body">
+					<p class="lead">About Me</p>
+					<a> @{{user.get_username}}</a>
+					</br>
+					<p>{{friends|length}} Friends {{all_quotes|length}} Posts</p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<div class="panel panel-success thumbnail friends col-md-12">
+				<div class="panel panel-body">
+					<h2 class="text-center"> <span class="col-md-8">{{friends|length}} Friends</span> <a class="col-md-4" href="#friendslist"><small>View All</small></a></h2>
+					<br>
+					{%for friend in friends%}
+					<a href="/userprofile/user={{friend.id}}" class="thumbnail col-md-4">
+				      <img class="friends_image" src="/media/{{friend.image}}" alt="An a letter">
+				    </a>
+				    {%endfor%}
+				</div>
+		    </div>
+		    <div class="clearfix"></div>
+		    <div id="last_ideas col-md-12">
+			    <div class="panel panel-success">
+					<div class="panel-heading">
+						<a href="#" class="pull-right">View all</a> 
+						<h4>Most Voted Ideas</h4>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="list-group">
+					{% for item in mostvoted %}
+						<a class="list-group-item"> {{item.creator}} : {{item.text}} {{item.votes}}</a>
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-7 col-md-offset-1 col-xs-12 pull-right">
+			<div class="well wellpost">
+				<form id="quote" class="form-horizontal" role="form" action="/post/" method="POST">{% csrf_token %}
+					<h4>What's New</h4>
+					<div class="form-group text-center">
+						{{ideaform.idea}}
+						<button type="submit" class="btn btn-primary pull-right formbtn">Post</button>
+					</div>
+				</form>
+			</div>
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<a href="#" class="pull-right">View all</a> 
+					<h4>My Recent Ideas</h4>
+				</div>
+			<div class="panel-body" style="overflow:visible;">
+				{%for item in quotes%}
+					<img src="/media/{{userprofile.image}}" width="50" height="50" class="img-circle pull-right"> 
+					<a href="#">original @{{item.creator}}</a>
+					<div class="clearfix"></div>
+					<br>
+					<div class="row">
+						<div class="text col-md-6">
+						{{item.text}}
+						{% if user.get_username in item.votes_received.all %}
+							Button disabled
+						{% endif %}
+						</div>
+						<div class="send_coffee 
+								{% for creator in item.votes_received.all %}
+									{%if user.id == creator.id %}
+										exists
+									{%endif%}
+								{% endfor %} col-md-6 text-right">
+							<div id="hover_users">
+								<p>{{item.votes}} Coffees received</p>
+								<ul>
+								{% for sender in item.votes_received.all %}
+									<li><span>{{ sender }}</span></li>
+								{% endfor %}
+								</ul>
+							</div>
+							<a href="/send_coffee/{{item.id}}">
+								<button class="btn btn-primary btn-xs">Send Coffee</button>
+							</a>
+						</div>
+					</div>
+					<br>
+					<div class="border"></div>
+				{%endfor%}
+			</div>
+		</div>
+	</div>
+{%endblock%}
